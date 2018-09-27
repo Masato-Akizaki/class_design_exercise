@@ -1,7 +1,5 @@
 class Juice
-  attr_accessor :name
-  attr_accessor :price
-  attr_accessor :stock
+  attr_accessor :name, :price, :stock
 
   def initialize(name:, price:, stock:)
     self.name = name

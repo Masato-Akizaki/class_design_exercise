@@ -15,20 +15,28 @@ bill10000 = Money.new(name: "10000円札", value: 10000)
 monies = [coin1, coin5, coin10, coin50, coin100, coin500,
           bill1000, bill2000, bill5000, bill10000]
 
-cola = Juice.new(name: "コーラ", price: 120, stock: 5)
+juice1 = Juice.new(name: "コーラ", price: 120, stock: 5)
+juice2 = Juice.new(name: "レッドブル", price: 200, stock: 5)
+juice3 = Juice.new(name: "水", price: 100, stock: 5)
 
-juices = [cola]
+juices = [juice1, juice2, juice3]
+
+juice_stocks = 0
+juices.each do |juice|
+  juice_stocks += juice.stock
+end
 
 total_charged_money = 0
 total_sales = 0
 order = 0
 
-while cola.stock > 0  do
+while juice_stocks > 0  do
   puts "------------------------------"
   puts "ドリンクメニュー"
   index = 1
   juices.each do |juice|
     puts "#{index}. #{juice.menu(total_charged_money)}"
+    index += 1
   end
   puts "---------------"
   index = 101
@@ -47,12 +55,13 @@ while cola.stock > 0  do
   order = gets.chomp.to_i
   puts "---------------"
    
-  if order == 1 # ジュースの購入
+  if order >= 1 && order <= 3 # ジュースの購入
     selected_juice = juices[order - 1]
     if selected_juice.stock > 0 && selected_juice.price <= total_charged_money
       puts selected_juice.purchase(total_charged_money)
       total_sales += selected_juice.price
       total_charged_money -= selected_juice.price
+      juice_stocks -= 1
     elsif selected_juice.stock == 0
       puts "売り切れです"
     else
