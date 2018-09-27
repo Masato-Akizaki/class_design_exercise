@@ -1,4 +1,5 @@
 require "./money"
+require "./juice"
 
 coin1 = Money.new(name: "1円玉", value: 1)
 coin5 = Money.new(name: "5円玉", value: 5)
@@ -14,11 +15,16 @@ bill10000 = Money.new(name: "10000円札", value: 10000)
 monies = [coin1, coin5, coin10, coin50, coin100, coin500,
           bill1000, bill2000, bill5000, bill10000]
 
+cola = Juice.new(name: "コーラ", price: 120, stock: 5)
+
 total_charged_money = 0
 order = 0
 
 while order < 11 do
   puts "------------------------------"
+  puts "ドリンクメニュー"
+  puts cola.menu
+  puts "---------------"
   index = 1
   monies.each do |money|
     puts "#{index}. #{money.name}"
