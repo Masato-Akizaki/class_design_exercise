@@ -23,8 +23,8 @@ class Juice
 
   def purchase(total)
     self.stock -= 1
-    total -= self.price
+    change = total - self.price
     puts "ご購入ありがとうございます"
-    return "現在の投入金額:#{total}円"
+    return "釣り銭:#{change}円"
   end
 end

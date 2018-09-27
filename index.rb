@@ -51,6 +51,7 @@ while juice_stocks > 0  do
 
   puts "---------------"
   puts "購入するジュース、又は、投入するお金の番号を選択してください"
+  puts "現在の投入金額:#{total_charged_money}円"
 
   order = gets.chomp.to_i
   puts "---------------"
@@ -60,7 +61,7 @@ while juice_stocks > 0  do
     if selected_juice.stock > 0 && selected_juice.price <= total_charged_money
       puts selected_juice.purchase(total_charged_money)
       total_sales += selected_juice.price
-      total_charged_money -= selected_juice.price
+      total_charged_money = 0
       juice_stocks -= 1
     elsif selected_juice.stock == 0
       puts "売り切れです"
@@ -73,7 +74,6 @@ while juice_stocks > 0  do
     puts charged_money.charge_now
     if order > 102 && order < 108
       total_charged_money += charged_money.value
-      puts "現在の投入金額:#{total_charged_money}円"
     else
       puts charged_money.unusable_money(total_charged_money)
     end
