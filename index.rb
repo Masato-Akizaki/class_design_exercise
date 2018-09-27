@@ -17,49 +17,75 @@ monies = [coin1, coin5, coin10, coin50, coin100, coin500,
 
 cola = Juice.new(name: "コーラ", price: 120, stock: 5)
 
+juices = [cola]
+
 total_charged_money = 0
+total_sales = 0
 order = 0
 
-while order < 11 do
+while cola.stock > 0  do
   puts "------------------------------"
   puts "ドリンクメニュー"
-  puts cola.menu
-  puts "---------------"
   index = 1
+  juices.each do |juice|
+    puts "#{index}. #{juice.menu(total_charged_money)}"
+  end
+  puts "---------------"
+  index = 101
   monies.each do |money|
     puts "#{index}. #{money.name}"
     index += 1
   end
+  puts "※１円玉、５円玉、千円札以外のお札は使用不可"
   puts "---------------"
-  puts "11. 投入完了"
-  puts "12. 払い戻し"
+  puts "111. 払い戻し"
+  puts "112. 現在の売り上げ"
 
   puts "---------------"
-  puts "投入するお金の番号を選択してください"
-  puts "１円玉、５円玉、千円札以外のお札は使用できません"
+  puts "購入するジュース、又は、投入するお金の番号を選択してください"
 
   order = gets.chomp.to_i
   puts "---------------"
    
-  if order == 0 || order > 12
-    order = 0
-    puts "投入するお金の番号を選択してください！"
+  if order == 1 # ジュースの購入
+    selected_juice = juices[order - 1]
+    if selected_juice.stock > 0 && selected_juice.price <= total_charged_money
+      puts selected_juice.purchase(total_charged_money)
+      total_sales += selected_juice.price
+      total_charged_money -= selected_juice.price
+    elsif selected_juice.stock == 0
+      puts "売り切れです"
+    else
+      puts "お金が足りません"
+    end
 
-  elsif order < 11
-    charged_money = monies[order-1]
+  elsif order > 100 && order < 111 # お金の投入
+    charged_money = monies[order - 101]
     puts charged_money.charge_now
-    if order > 2 && order < 8
+    if order > 102 && order < 108
       total_charged_money += charged_money.value
-      puts "現在の投入金額の合計:#{total_charged_money}円"
+      puts "現在の投入金額:#{total_charged_money}円"
     else
       puts charged_money.unusable_money(total_charged_money)
     end
 
-  elsif order == 11
-    puts "投入金額の合計:#{total_charged_money}円"
-     
-  else 
+  elsif order == 111 # 払い戻し
     change = total_charged_money
+    total_charged_money = 0
     puts "釣り銭:#{change}円"
+
+  elsif order == 112 # 現在の売り上げ
+    puts "現在の売り上げ金額:#{total_sales}円"
+     
+  else # order <= 0 || order > 112 || (order > 3 && order <112)
+    order = 0
+    puts "購入するジュース、又は、投入するお金の番号を選択してください！"
   end
-end 
+end
+
+change = total_charged_money
+total_charged_money = 0
+puts "******************************"
+puts "完売しました"
+puts "釣り銭:#{change}円"
+puts "売り上げ金額:#{total_sales}円"
