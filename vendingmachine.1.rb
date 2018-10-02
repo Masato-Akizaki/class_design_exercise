@@ -40,8 +40,8 @@ class VendingMachine
 
   def purchase(drink_name)  # 指定したドリンクを購入する
     if purchasable? drink_name
-      @drink_table[drink.name][:stock] -= 1
-      price = @drink_table[drink.name][:price]
+      @drink_table[drink_name][:stock] -= 1
+      price = @drink_table[drink_name][:price]
       @sale_amount += price 
       @total -= price  
       [drink_name, price, refund]  
