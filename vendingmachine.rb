@@ -1,7 +1,7 @@
 require "./drink"
 
 class VendingMachine
-  AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze  # 利用可能なお金のハッシュを作成（.freezeで値が変動しないようにしている）
+  AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze  # 利用可能なお金の配列を作成（.freezeで値が変動しないようにしている）
 
   attr_reader :total, :sale_amount # インスタンス変数に読み出す
 
