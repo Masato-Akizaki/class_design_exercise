@@ -38,8 +38,8 @@ class Game
   def compare
     judge_hands
     compare_hands
-    compare_ranks if @result == "draw hands"
-    compare_other_ranks if @result == "draw ranks"
+    compare_ranks if @result == "same the hand"
+    compare_other_ranks if @result == "same the most rank"
     @result
   end
 
@@ -50,26 +50,26 @@ class Game
     elsif strength[0] < strength[1]
       @result = "WINNER: #{players[1].name}, #{players[1].hand}, #{players[1].cards.map{ |c| c.notation }}"
     else
-      @result = "draw hands"
+      @result = "same the hand"
     end
   end
 
   def compare_ranks
-    rank_strength = players.map{ |p| p.cards }
-    if Card::RANKS.index(rank_strength[0][1].rank) > Card::RANKS.index(rank_strength[1][1].rank)
+    rank_strength = players.map{ |p| p.cards.map{ |c| Card::RANKS.index(c.rank) } }
+    if rank_strength[0][1] > rank_strength[1][1]
       @result = "WINNER: #{players[0].name}, #{players[0].hand}, #{players[0].cards.map{ |c| c.notation }}"
-    elsif Card::RANKS.index(rank_strength[0][1].rank) < Card::RANKS.index(rank_strength[1][1].rank)
+    elsif rank_strength[0][1] < rank_strength[1][1]
       @result = "WINNER: #{players[1].name}, #{players[1].hand}, #{players[1].cards.map{ |c| c.notation }}"
     else
-      @result = "draw ranks"
+      @result = "same the most rank"
     end
   end
 
   def compare_other_ranks
-    rank_strength = players.map{ |p| p.cards }
-    if Card::RANKS.index(rank_strength[0][0].rank) > Card::RANKS.index(rank_strength[1][0].rank)
+    rank_strength = players.map{ |p| p.cards.map{ |c| Card::RANKS.index(c.rank) } }
+    if rank_strength[0][0] > rank_strength[1][0]
       @result = "WINNER: #{players[0].name}, #{players[0].hand}, #{players[0].cards.map{ |c| c.notation }}"
-    elsif Card::RANKS.index(rank_strength[0][0].rank) < Card::RANKS.index(rank_strength[1][0].rank)
+    elsif rank_strength[0][0] < rank_strength[1][0]
       @result = "WINNER: #{players[1].name}, #{players[1].hand}, #{players[1].cards.map{ |c| c.notation }}"
     else
       @result = "It is a draw"
