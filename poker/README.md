@@ -1,5 +1,35 @@
 # TDDBC仙台07課題：ポーカー
 
+## How to use
+
+````
+$ irb
+> require './poker/game.rb'
+> game = Game.new  # create 2 players and 1 deck (4 suits x 13 ranks = 52 cards)
+> game.deal_2cards  # =>  [["P1", ["H2", "H9"]], ["P2", ["H8", "S9"]]]
+> game.player("P1").judge_hand  # =>  "Flush"
+> game.player("P2").judge_hand  # =>  "Straight"
+> game.judge_hands  # =>  [["P1", "Flush"], ["P2", "Straight"]]
+> game.compare  # =>  "WINNER: P2, Straight, ["H8", "S9"]"
+> game.next  # reset players' cards and hands
+> game.deal_2cards  # =>  [["P1", ["C5", "HJ"]], ["P2", ["S2", "H7"]]]
+> game.judge_hands  # =>  [["P1", "High-Card"], ["P2", "High-Card"]]
+> game.compare  # =>  "WINNER: P1, High-Card, ["C5", "HJ"]"
+> game.next  # reset players' cards and hands
+> game.deal_2cards  # =>  [["P1", ["CA", "H2"]], ["P2", ["S3", "H4"]]]
+> game.judge_hands  # =>  [["P1", "Straight"], ["P2", "Straight"]]
+> game.compare  # =>  "WINNER: P2, Straight, ["S3", "H4"]"
+> game.next  # reset players' cards and hands
+> game.deal_2cards  # =>  [["P1", ["C6", "SJ"]], ["P2", ["S5", "DJ"]]]
+> game.judge_hands  # =>  [["P1", "High-Card"], ["P2", "High-Card"]]
+> game.compare  # =>  "WINNER: P1, High-Card, ["C6", "SJ"]"
+> game.next  # reset players' cards and hands
+> game.deal_2cards  # =>  [["P1", ["D5", "SA"]], ["P2", ["H5", "DA"]]]
+> game.judge_hands  # =>  [["P1", "High-Card"], ["P2", "High-Card"]]
+> game.compare  # =>  "It is a draw"
+> exit
+````
+
 ## ポーカー
 
 ポーカー(poker)は、トランプを使って行うゲームのジャンルである。 プレイヤー達は5枚の札でハンド（役、手役）を作って役の強さを競う
