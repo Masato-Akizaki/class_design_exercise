@@ -4,7 +4,7 @@ require "./poker/deck.rb"
 class Game
   HANDS = %w{ High-Card Flush Straight Pair Straight-Flush }
   attr_reader :players, :deck
-  
+
   def initialize
     @players = [Player.new(name: "P1"), Player.new(name: "P2")]
     @deck = Deck.new
@@ -27,6 +27,8 @@ class Game
   end
 
   def player(name)
+    # detectというメソッド使うと良さそうです
+    # https://ref.xaio.jp/ruby/classes/enumerable/find
     players.select { |p| p.name == name }.first
   end
 
@@ -81,8 +83,8 @@ class Game
   end
 
   def sort_card
-    players.each{ |p| 
-      p.cards.sort_by!{ |c| Card::RANKS.index(c.rank) } 
+    players.each{ |p|
+      p.cards.sort_by!{ |c| Card::RANKS.index(c.rank) }
       p.cards.reverse! if twoA?( Card::RANKS.index(p.cards[0].rank), Card::RANKS.index(p.cards[1].rank) )
      }
   end
