@@ -9,7 +9,7 @@ class Card
   end
 
   def notation
-    "#{@suit}#{@rank}"
+    "#{suit}#{rank}"
   end
 
   def has_same_suit?(other)
@@ -18,5 +18,9 @@ class Card
 
   def has_same_rank?(other)
     rank == other.rank
+  end
+
+  def serial_rank?(other)
+    (RANKS.index(rank) - RANKS.index(other.rank)).abs == 1 || (RANKS.index(rank) - RANKS.index(other.rank)).abs == 12
   end
 end

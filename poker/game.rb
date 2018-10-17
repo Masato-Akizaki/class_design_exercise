@@ -2,7 +2,7 @@ require "./poker/player.rb"
 require "./poker/deck.rb"
 
 class Game
-  HANDS = %w{ High-Card Flush Straight Pair Straight-Flush }
+  HANDS = %i{ High_Card Flush Straight Pair Straight_Flush }
   attr_reader :players, :deck
   
   def initialize
@@ -26,8 +26,19 @@ class Game
     players.map{ |p| [p.name, p.cards.map { |c| c.notation }] }
   end
 
+  def sort_card
+    players.each{ |p| 
+      p.cards.sort_by!{ |c| Card::RANKS.index(c.rank) } 
+      p.cards.reverse! if twoA?( Card::RANKS.index(p.cards[0].rank), Card::RANKS.index(p.cards[1].rank) )
+     }
+  end
+
+  def twoA?(a, b)
+    (a-b).abs == 12
+  end
+
   def player(name)
-    players.select { |p| p.name == name }.first
+    players.detect { |p| p.name == name }
   end
 
   def judge_hands
@@ -74,17 +85,6 @@ class Game
     else
       @result = "It is a draw"
     end
-  end
-
-  def twoA?(a, b)
-    (a-b).abs == 12
-  end
-
-  def sort_card
-    players.each{ |p| 
-      p.cards.sort_by!{ |c| Card::RANKS.index(c.rank) } 
-      p.cards.reverse! if twoA?( Card::RANKS.index(p.cards[0].rank), Card::RANKS.index(p.cards[1].rank) )
-     }
   end
 
 end
