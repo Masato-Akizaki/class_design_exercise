@@ -2,7 +2,7 @@ require "./poker/player.rb"
 require "./poker/deck.rb"
 
 class Game
-  HANDS = %i{ High_Card Flush Straight Pair Straight_Flush }
+  HANDS = %i{ high_card flush straight pair straight_flush }
   attr_reader :players, :deck
   
   def initialize
