@@ -20,3 +20,13 @@ http://devtesting.jp/tddbc/?Markdown%E8%A8%98%E6%B3%95%E3%82%B3%E3%83%B3%E3%83%9
 ## お題６ リスト記法（-）に対応する
 ## お題７ 複数行のMarkdownテキストを一括で変換する
 ## お題８ Markdownテキストが書かれたファイルを読み込み、変換結果をファイルに出力する
+
+## How to use
+
+````
+$ irb
+> require './markdown_converter/markdown_converter.rb'
+> converter = Markdown_Converter.new  # 
+> converter.convert_p_element("Hello, World")  # => "<p>Hello, World</p>"
+> exit
+````
