@@ -1,4 +1,4 @@
-require "./drink"
+require "vending_machine/drink"
 
 class Stock
   attr_reader :drink_stock

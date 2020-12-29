@@ -1,5 +1,5 @@
-require "./poker/player.rb"
-require "./poker/deck.rb"
+require "poker/player.rb"
+require "poker/deck.rb"
 
 class Game
   HANDS = %i{ high_card flush straight pair straight_flush }
