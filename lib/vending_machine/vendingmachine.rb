@@ -1,4 +1,4 @@
-require "./drink"
+require "vending_machine/drink"
 
 class VendingMachine
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze  # 利用可能なお金の配列を作成（.freezeで値が変動しないようにしている）

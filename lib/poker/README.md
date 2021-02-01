@@ -4,7 +4,7 @@
 
 ````
 $ irb
-> require './poker/game.rb'
+> require './lib/poker/game.rb'
 > game = Game.new  # create 2 players and 1 deck (4 suits x 13 ranks = 52 cards)
 > game.deal_2cards  # =>  [["P1", ["H2", "H9"]], ["P2", ["H8", "S9"]]]
 > game.player("P1").judge_hand  # =>  "Flush"

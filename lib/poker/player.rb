@@ -1,4 +1,4 @@
-require "./poker/judge.rb"
+require "poker/judge.rb"
 
 class Player
   include Judge_Two

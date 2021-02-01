@@ -2,15 +2,15 @@ module Judge_Two
 
   def judge_hand
     if straight? && flush?
-      @hand = :Straight_Flush
+      @hand = :straight_flush
     elsif pair?
-      @hand = :Pair
+      @hand = :pair
     elsif straight?
-      @hand = :Straight
+      @hand = :straight
     elsif flush?
-      @hand = :Flush
+      @hand = :flush
     else
-      @hand = :High_Card
+      @hand = :high_card
     end
   end
 

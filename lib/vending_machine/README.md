@@ -4,7 +4,7 @@
 
 ````
 $ irb
-> require './vendingmachine.1'
+> require './lib/vendingmachine/vendingmachine.1'
 > machine = VendingMachine.new
 > machine.stock_info # => {:cola=>{:price=>120, :stock=>5}}
 > machine.store Drink.redbull

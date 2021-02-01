@@ -1,4 +1,4 @@
-require "./poker/card.rb"
+require "poker/card.rb"
 
 class Deck
   attr_reader :deck
