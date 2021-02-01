@@ -19,4 +19,8 @@ class Markdown_Converter
     end
   end
 
+  def convert_strong(text)
+    text.gsub("**").each_with_index { |_, i| "<#{"/" if i.odd?}strong>" }
+  end
+
 end
