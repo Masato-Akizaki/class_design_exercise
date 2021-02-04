@@ -13,4 +13,13 @@ class Markdown_Converter
     text.gsub("**").each_with_index { |_, i| "<#{"/" if i.odd?}strong>" }
   end
 
+  def convert_list(text)
+    if text.start_with? "-"
+      _, text = text.split(" ", 2)
+      "<li>#{text}</li>"
+    else
+      "<p>" + text + "</p>"
+    end
+  end
+
 end
