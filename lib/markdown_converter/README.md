@@ -23,10 +23,14 @@ http://devtesting.jp/tddbc/?Markdown%E8%A8%98%E6%B3%95%E3%82%B3%E3%83%B3%E3%83%9
 
 ## How to use
 
+```
+ruby ./lib/markdown_converter/markdown_converter.rb ./lib/markdown_converter/input.md ./lib/markdown_converter/output.html
+```
+
 ````
 $ irb
 > require './lib/markdown_converter/markdown_converter.rb'
 > converter = Markdown_Converter.new  # 
-> converter.convert_p_element("Hello, World")  # => "<p>Hello, World</p>"
+> converter.convert_header("Hello, World")  # => "<p>Hello, World</p>"
 > exit
 ````
